@@ -10,5 +10,5 @@
 
 (run (reduce max (filter is-palindrome?
                          (for [i (range 100 1000)
-                               j (range 100 1000)]
+                               j (range i 1000)]
                            (* i j)))))
