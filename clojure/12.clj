@@ -23,7 +23,4 @@
 (def triangle-numbers
   (lazy-cat [1] (map + triangle-numbers (drop 2 (range)))))
 
-(defn n-divisors [n]
-  (* 2 (count (filter #(zero? (rem n %)) (range 1 (Math/sqrt n))))))
-
 (run (first (filter #(<= 500 (n-divisors %)) triangle-numbers)))

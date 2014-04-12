@@ -49,6 +49,9 @@
                 (list n))))]
     (factor n primes)))
 
+(defn n-divisors [n]
+  (reduce * (map #(inc (count %)) (partition-by identity (prime-factors n)))))
+
 (defmacro run [expr]
   "Times code and prints its results."
   `(println (time ~expr)))
