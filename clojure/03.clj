@@ -4,9 +4,4 @@
 
 (load "util")
 
-(defn prime-factors-of [n]
-  (filter (comp zero? (partial rem n))
-          (take-while #(> n (* % %))
-                      primes)))
-
-(run (reduce max (prime-factors-of 600851475143)))
+(run (reduce max (prime-factors 600851475143)))

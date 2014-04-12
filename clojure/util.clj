@@ -37,7 +37,17 @@
                     new-sieve (sieve-add (dissoc! sv c) c step)]
                 (recur (+ 2 c) new-sieve p primes))))]
     (lazy-cat [2 3 5 7]
-              (sieve 9 (transient {}) 3 (drop 2 primes)))))
+      (sieve 9 (transient {}) 3 (drop 2 primes)))))
+
+(defn prime-factors [n]
+  (letfn [(factor [n primes]
+            (let [p (first primes)]
+              (if (<= (* p p) n)
+                (if (= 0 (mod n p))
+                  (cons p (factor (quot n p) primes))
+                  (recur n (rest primes)))
+                (list n))))]
+    (factor n primes)))
 
 (defmacro run [expr]
   "Times code and prints its results."
