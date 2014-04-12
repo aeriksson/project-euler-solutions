@@ -17,7 +17,7 @@
 (load "util")
 
 (defn collatz-length [n]
-  (loop [n n i 0]
+  (loop [n n, i 0]
     (if (zero? n)
       0
       (if (= 1 n)
@@ -30,4 +30,4 @@
   (first (apply max-key second
                 (map-indexed vector
                              (pmap collatz-length
-                                  (range 0 1000001))))))
+                                   (range 0 1000001))))))

@@ -19,7 +19,7 @@
 (run
   (count
     (filter #(= 1 %)
-      (for [year (range 1901 (inc 2000))
-            month (range 0 12)]
-        (.get (java.util.GregorianCalendar. year month 1)
-              java.util.Calendar/DAY_OF_WEEK)))))
+            (for [year (range 1901 (inc 2000))
+                  month (range 0 12)]
+              (.get (java.util.GregorianCalendar. year month 1)
+                    java.util.Calendar/DAY_OF_WEEK)))))
