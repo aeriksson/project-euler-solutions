@@ -5,4 +5,4 @@
 
 (load "util")
 
-(run (reduce + (filter #(or (mod % 3) (mod % 5)) (range 1000))))
+(run (reduce + (filter #(or (= 0 (mod % 3)) (= 0 (mod % 5))) (range 1000))))
