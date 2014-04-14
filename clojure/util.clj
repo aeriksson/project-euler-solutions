@@ -16,7 +16,10 @@
 
 (defn digits-of [n]
   "Returns a vector of the digits of n as integers"
-  (map #(Integer. (str %)) (str n)))
+  (loop [n n acc ()]
+    (if (= 0 n)
+      acc
+      (recur (quot n 10) (cons (int (mod n 10)) acc)))))
 
 (def primes
   "An infinite sequence of primes, generated using the sieve of Eratosthenes.
