@@ -8,7 +8,4 @@
 
 (load "util")
 
-(def fibonnaci-numbers
-  (lazy-cat [0 1] (map + (rest fibonnaci-numbers) fibonnaci-numbers)))
-
-(run (reduce + (take-while #(< % 4000000) fibonnaci-numbers)))
+(run (reduce + (take-while #(< % 4000000) fibonacci-numbers)))

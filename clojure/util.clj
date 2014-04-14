@@ -21,6 +21,9 @@
       acc
       (recur (quot n 10) (cons (int (mod n 10)) acc)))))
 
+(def fibonacci-numbers
+  (lazy-cat [0 1] (map +' (rest fibonacci-numbers) fibonacci-numbers)))
+
 (def primes
   "An infinite sequence of primes, generated using the sieve of Eratosthenes.
    Defers adding numbers to the sieve until needed -- uses O(sqrt(n)) space."
