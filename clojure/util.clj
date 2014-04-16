@@ -14,12 +14,14 @@
 (defn least-common-multiple [a b]
   (/ (* a b) (greatest-common-divisor a b)))
 
-(defn digits-of [n]
+(defn digits-of
   "Returns a vector of the digits of n as integers"
-  (loop [n n acc ()]
-    (if (= 0 n)
-      acc
-      (recur (quot n 10) (cons (int (mod n 10)) acc)))))
+  ([n] (digits-of n 10))
+  ([n b]
+   (loop [n n acc ()]
+     (if (= 0 n)
+       acc
+       (recur (quot n b) (cons (int (mod n b)) acc))))))
 
 (def fibonacci-numbers
   (lazy-cat [0 1] (map +' (rest fibonacci-numbers) fibonacci-numbers)))
