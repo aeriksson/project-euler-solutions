@@ -50,6 +50,11 @@
     (lazy-cat [2 3 5 7]
       (sieve 9 (transient {}) 3 (drop 2 primes)))))
 
+(defn prime? [n]
+  (if (< n 2)
+    false
+    (not-any? #(zero? (rem n %)) (take-while #(<= % (Math/sqrt n)) primes))))
+
 (defn prime-factors [n]
   (letfn [(factor [n primes]
             (let [p (first primes)]
