@@ -68,6 +68,20 @@
 (defn n-divisors [n]
   (reduce * (map #(inc (count %)) (partition-by identity (prime-factors n)))))
 
+(defn proper-divisor-sum [n]
+  (let [f (fn [primes acc]
+            (if (empty? primes)
+              acc
+              (let [p (first primes)
+                    n (count p)
+                    x (first p)
+                    powers-of-x (iterate (partial * x) x)
+                    multiplier (inc (reduce + (take n powers-of-x))) ]
+                (recur (rest primes) (* acc multiplier)))))
+        primes (prime-factors n)
+        partitioned-primes (partition-by identity primes)]
+    (- (f partitioned-primes 1) n)))
+
 (defmacro run [expr]
   "Times code and prints its results."
   `(println (time ~expr)))
