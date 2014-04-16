@@ -18,16 +18,15 @@
 
 (defn collatz-length [n]
   (loop [n n, i 0]
-    (if (zero? n)
-      0
-      (if (= 1 n)
-        i
-        (if (even? n)
-          (recur (quot n 2) (inc i))
-          (recur (inc (* n 3)) (inc i)))))))
+    (cond (zero? n) 0
+          (= 1 n)   i
+          (even? n) (recur (quot n 2) (inc i))
+          :else     (recur (inc (* n 3)) (inc i)))))
 
-(run
+(defn euler-14 [n]
   (first (apply max-key second
                 (map-indexed vector
                              (pmap collatz-length
-                                   (range 0 1000001))))))
+                                   (range 0 (inc n)))))))
+
+(run (euler-14 1000000))

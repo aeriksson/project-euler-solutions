@@ -5,9 +5,14 @@
 
 (load "util")
 
-(run (reduce max
-             (for [i (range 100 1000)
-                   j (range i 1000)
-                   :let [p (* i j)]
-                   :when (palindrome? (digits-of p))]
-               p)))
+(defn euler-4 [n]
+  (let [upper-bound (exp 10 n)
+        lower-bound (exp 10 (dec n))]
+    (reduce max
+            (for [i (range lower-bound upper-bound)
+                  j (range i upper-bound)
+                  :let [p (* i j)]
+                  :when (palindrome? (digits-of p))]
+              p))))
+
+(run (euler-4 3))

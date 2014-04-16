@@ -4,4 +4,7 @@
 
 (load "util")
 
-(run (reduce max (prime-factors 600851475143)))
+(defn euler-3 [n]
+  (reduce max (prime-factors n)))
+
+(run (euler-3 600851475143))

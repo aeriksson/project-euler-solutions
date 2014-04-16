@@ -5,4 +5,7 @@
 
 (load "util")
 
-(run (long (choose 40 20)))
+(defn euler-15 [n m]
+  (long (choose (+ n m) n)))
+
+(run (euler-15 20 20))

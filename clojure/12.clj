@@ -23,4 +23,7 @@
 (def triangle-numbers
   (lazy-cat [1] (map + triangle-numbers (drop 2 (range)))))
 
-(run (first (filter #(<= 500 (n-divisors %)) triangle-numbers)))
+(defn euler-12 [n]
+  (first (filter #(<= n (n-divisors %)) triangle-numbers)))
+
+(run (euler-12 500))

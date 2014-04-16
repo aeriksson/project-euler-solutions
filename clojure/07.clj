@@ -5,4 +5,7 @@
 
 (load "util")
 
-(run (nth primes 10001))
+(defn euler-7 [n]
+  (nth primes n))
+
+(run (euler-7 10001))

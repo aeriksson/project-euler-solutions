@@ -8,4 +8,7 @@
 
 (load "util")
 
-(run (reduce + (take-while #(< % 4000000) fibonacci-numbers)))
+(defn euler-2 [n]
+  (reduce + (take-while #(< % n) fibonacci-numbers)))
+
+(run (euler-2 4000000))

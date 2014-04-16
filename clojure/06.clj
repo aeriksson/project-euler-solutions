@@ -18,4 +18,7 @@
 (defn square-of-sum [numbers]
   (#(* % %) (reduce + numbers)))
 
-(run (#(- (square-of-sum %) (sum-of-squares %)) (range 1 101)))
+(defn euler-6 [numbers]
+  (- (square-of-sum numbers) (sum-of-squares numbers)))
+
+(run (euler-6 (range 1 101)))

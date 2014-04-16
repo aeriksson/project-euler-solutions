@@ -8,9 +8,12 @@
 
 (load "util")
 
-(run (first
-       (for [a (range 1 1000)
-             b (range a 1000)
-             :let [c (- 1000 a b)]
-             :when (= (+ (* a a) (* b b)) (* c c))]
-         (* a b c))))
+(defn euler-9 [n]
+  (first
+    (for [a (range 1 n)
+          b (range a n)
+          :let [c (- n a b)]
+          :when (= (+ (* a a) (* b b)) (* c c))]
+      (* a b c))))
+
+(run (euler-9 1000))

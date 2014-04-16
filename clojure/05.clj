@@ -6,4 +6,7 @@
 
 (load "util")
 
-(run (reduce least-common-multiple (range 1 21)))
+(defn euler-5 [numbers]
+  (reduce least-common-multiple numbers))
+
+(run (euler-5 (range 1 21)))
