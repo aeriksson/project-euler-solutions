@@ -5,10 +5,9 @@
 
 (load "util")
 
-(defn is-palindrome? [n]
-  (= (reverse (str n)) (vec (str n))))
-
-(run (reduce max (filter is-palindrome?
-                         (for [i (range 100 1000)
-                               j (range i 1000)]
-                           (* i j)))))
+(run (reduce max
+             (for [i (range 100 1000)
+                   j (range i 1000)
+                   :let [p (* i j)]
+                   :when (palindrome? (digits-of p))]
+               p)))

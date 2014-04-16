@@ -24,6 +24,9 @@
 (def fibonacci-numbers
   (lazy-cat [0 1] (map +' (rest fibonacci-numbers) fibonacci-numbers)))
 
+(defn palindrome? [n]
+  (= (reverse n) n))
+
 (def primes
   "An infinite sequence of primes, generated using the sieve of Eratosthenes.
    Defers adding numbers to the sieve until needed -- uses O(sqrt(n)) space."
