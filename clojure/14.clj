@@ -24,9 +24,6 @@
           :else     (recur (inc (* n 3)) (inc i)))))
 
 (defn euler-14 [n]
-  (first (apply max-key second
-                (map-indexed vector
-                             (pmap collatz-length
-                                   (range 0 (inc n)))))))
+  (max-index (pmap collatz-length (range 0 (inc n)))))
 
 (run (euler-14 1000000))

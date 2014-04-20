@@ -65,6 +65,9 @@
                 (list n))))]
     (factor n primes)))
 
+(defn max-index [s]
+  (first (apply max-key second (map-indexed vector s))))
+
 (defn n-divisors [n]
   (reduce * (map #(inc (count %)) (partition-by identity (prime-factors n)))))
 
