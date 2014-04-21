@@ -11,8 +11,17 @@
 (defn greatest-common-divisor [a b]
   (if (zero? b) a (recur b (mod a b))))
 
+(defn coprime? [a b]
+  (= 1 (greatest-common-divisor a b)))
+
 (defn least-common-multiple [a b]
   (/ (* a b) (greatest-common-divisor a b)))
+
+(defn is-permutation? [a b]
+  (= (sort a) (sort b)))
+
+(defn integral? [n]
+  (== n (int n)))
 
 (defn digits-of
   "Returns a vector of the digits of n as integers"
@@ -31,7 +40,7 @@
 
 (def primes
   "An infinite sequence of primes, generated using the sieve of Eratosthenes.
-   Defers adding numbers to the sieve until needed -- uses O(sqrt(n)) space."
+  Defers adding numbers to the sieve until needed -- uses O(sqrt(n)) space."
   (letfn [(sieve-add [sv start step]
             (assoc! sv
                     (loop [i (+ start step)]
@@ -64,6 +73,15 @@
                   (recur n (rest primes)))
                 (list n))))]
     (factor n primes)))
+
+(defn divides? [n m]
+  (= 0 (mod m n)))
+
+(defn proper-divisors [n]
+  (filter #(= 0 (mod n %)) (range 1 n)))
+
+(defn divisors [n]
+  (filter #(= 0 (mod n %)) (range 1 (inc n))))
 
 (defn max-index [s]
   (first (apply max-key second (map-indexed vector s))))
