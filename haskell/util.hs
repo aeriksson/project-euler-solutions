@@ -22,6 +22,26 @@ primes = 2 : 3 : 5 : 7 : sieve 9 (drop 1 primes) empty
       | otherwise   = c : sieve c' ps sv
         where c' = c + 2
 
+coprime :: Integral a => a -> a -> Bool
+coprime a b = gcd a b == 1
+
+divides :: Integral a => a -> a -> Bool
+divides a b = mod b a == 0
+
+isPrime :: Int -> Bool
+isPrime n
+  | n < 2     = False
+  | otherwise = all (\x -> not $ divides x n) $ takeWhile (<= rt) primes
+    where rt = floor $ sqrt $ fromIntegral n
+
+properDivisorSum :: Int -> Int
+properDivisorSum n = (f partitionedPrimes 1) - n
+  where f []        s = s
+        f ps@(p:pt) s = f pt (s * multiplier)
+          where pows       = iterate (* (head p)) (head p)
+                multiplier = 1 + (sum (take (length p) pows))
+        partitionedPrimes = (group . primeFactors) n
+
 primeFactors :: Int -> [Int]
 primeFactors n = factors primes n
   where
