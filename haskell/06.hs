@@ -12,4 +12,6 @@
 
 import Util
 
-main = do run $ (sum [1..100])^2 - sum (map (^2) [1..100])
+euler6 xs = (sum xs)^2 - sum (map (^2) xs)
+
+main = run $ euler6 [1..100]

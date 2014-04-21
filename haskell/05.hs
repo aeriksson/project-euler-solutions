@@ -6,4 +6,6 @@
 
 import Util
 
-main = do run $ foldr1 lcm [1..20]
+euler5 xs = foldr1 lcm xs
+
+main = run $ euler5 [1..20]

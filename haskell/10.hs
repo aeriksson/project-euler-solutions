@@ -4,4 +4,6 @@
 
 import Util
 
-main = do run $ sum (takeWhile (< 2000000) primes)
+euler10 n = sum $ takeWhile (< n) primes
+
+main = run $ euler10 2000000

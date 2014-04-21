@@ -25,4 +25,6 @@ collatzLength n = f n 0
       | even n    = f (quot n 2) (i + 1)
       | otherwise = f (n * 3 + 1) (i + 1)
 
-main = do run $ snd . maximum $ zip (map collatzLength [0..1000000]) [0..]
+euler14 n = snd . maximum $ zip (map collatzLength [0..n]) [0..]
+
+main = run $ euler14 1000000

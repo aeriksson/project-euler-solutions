@@ -23,4 +23,6 @@ spell_out n
   | n < 10000 = spell_out (div n 1000) ++ "thousand" ++ spell_out (mod n 1000)
   | otherwise = ""
 
-main = do run $ sum $ map (length . spell_out) [1..1000]
+euler17 xs = sum $ map (length . spell_out) xs
+
+main = run $ euler17 [1..1000]

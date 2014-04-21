@@ -4,4 +4,6 @@
 
 import Util
 
-main = do run $ sum $ digitsOf (2^100 :: Integer)
+euler16 n = sum $ digitsOf n
+
+main = run $ euler16 (2^100)

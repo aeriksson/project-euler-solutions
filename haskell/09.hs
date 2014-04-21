@@ -8,7 +8,9 @@
 
 import Util
 
-main = do run $ head [a * b * c | a <- [1..1000],
-                                  b <- [a..1000],
-                                  let c = 1000 - b - a,
-                                  a^2 + b^2 == c^2]
+euler9 n = head [a * b * c | a <- [1..n],
+                             b <- [a..n],
+                             let c = n - b - a,
+                             a^2 + b^2 == c^2]
+
+main = run $ euler9 1000

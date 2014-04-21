@@ -5,4 +5,6 @@
 
 import Util
 
-main = do run $ sum [i | i <- [1..999], (mod i 3 == 0) || (mod i 5 == 0)]
+euler1 n = sum [i | i <- [1..n], (mod i 3 == 0) || (mod i 5 == 0)]
+
+main = run $ euler1 1000

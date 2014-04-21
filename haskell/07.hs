@@ -5,4 +5,6 @@
 
 import Util
 
-main = do run $ primes !! 10001
+euler7 n = primes !! n
+
+main = run $ euler7 10001

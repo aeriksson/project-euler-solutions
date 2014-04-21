@@ -5,4 +5,6 @@
 
 import Util
 
-main = do run $ choose 40 20
+euler15 n m = choose (n + m) n
+
+main = run $ euler15 20 20

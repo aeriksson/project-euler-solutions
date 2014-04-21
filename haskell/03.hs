@@ -4,4 +4,6 @@
 
 import Util
 
-main = do run $ maximum $ primeFactors 600851475143
+euler3 n = maximum $ primeFactors n
+
+main = run $ euler3 600851475143

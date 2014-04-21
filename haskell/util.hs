@@ -32,6 +32,10 @@ primeFactors n = factors primes n
       | p * p > n    = [n]
       | otherwise    = factors pt n
 
+fibonacciNumbers :: [Integer]
+fibonacciNumbers = 0 : 1 : zipWith (+) fibonacciNumbers
+                                        (tail fibonacciNumbers)
+
 factorial :: Integral a => a -> a
 factorial n = product [1..n]
 
@@ -48,7 +52,7 @@ run :: t -> IO t
 run a = do
     start <- getCPUTime
     v <- return $! a
-    end   <- getCPUTime
+    end <- getCPUTime
     let diff = (fromIntegral (end - start)) / (10^9)
     printf "Elapsed time: %0.3f msecs\n" (diff :: Double)
     return v

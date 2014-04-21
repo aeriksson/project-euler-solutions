@@ -22,4 +22,6 @@ import Util
 
 triangleNumbers = 1 : zipWith (+) triangleNumbers [2..]
 
-main = do run $ head $ filter (\x -> nDivisors x > 500) triangleNumbers
+euler12 n = head $ filter (\x -> nDivisors x > n) triangleNumbers
+
+main = run $ euler12 500

@@ -19,8 +19,9 @@ import Data.Time.Calendar.WeekDate
 
 import Util
 
-main = do run $ length $ filter (== 7) weekdays
-  where
-    weekdays = [d | y <- [1901..2000],
-                    m <- [1..12],
-                    let (_, _, d) = toWeekDate $ fromGregorian y m 1]
+euler19 years = length $ filter (== 7) weekdays
+  where weekdays = [d | y <- years,
+                        m <- [1..12],
+                        let (_, _, d) = toWeekDate $ fromGregorian y m 1]
+
+main = run $ euler19 [1901..2000]

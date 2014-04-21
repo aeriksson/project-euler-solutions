@@ -8,7 +8,6 @@
 
 import Util
 
-fibonacciNumbers = 0 : 1 : zipWith (+) fibonacciNumbers
-                                        (tail fibonacciNumbers)
+euler2 n = sum $ takeWhile (< n) fibonacciNumbers
 
-main = do run $ sum $ takeWhile (< 4000000) fibonacciNumbers
+main = run $ euler2 4000000

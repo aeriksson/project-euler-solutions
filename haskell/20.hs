@@ -7,4 +7,6 @@
 
 import Util
 
-main = do run $ sum $ digitsOf $ product [1..100]
+euler20 n = sum $ digitsOf $ product [1..n]
+
+main = run $ euler20 100
