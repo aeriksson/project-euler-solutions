@@ -53,8 +53,8 @@ primeFactors :: Int -> [Int]
 primeFactors n = factors primes n
   where
     factors :: [Int] -> Int -> [Int]
-    factors _ 1 = []
     factors ps@(p:pt) n
+      | n < 2        = []
       | rem n p == 0 = p : factors ps (quot n p)
       | p * p > n    = [n]
       | otherwise    = factors pt n
