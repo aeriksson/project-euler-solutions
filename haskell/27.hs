@@ -29,7 +29,7 @@ euler27 n = snd $ maximum [(p, a * b) | b <- takeWhile (< 1000) primes,
                                         b > -(79 * (79 + a)),
                                         coprime a b,
                                         let fs = f a b
-                                            p = length $ takeWhile isPrime $ fs]
+                                            p = length . takeWhile isPrime $ fs]
   where f a b = map (\x -> x^2 + x * a + b) [0..]
 
 main = run $ euler27 1000

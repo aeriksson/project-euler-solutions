@@ -6,7 +6,7 @@ import Data.Char (digitToInt)
 import Data.List (tails)
 import Util
 
-euler8 n = maximum $ map (product . take 5) (tails n)
+euler8 = maximum . map (product . take 5) . tails
 
 main = run $ euler8 number
   where

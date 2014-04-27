@@ -5,6 +5,6 @@
 
 import Util
 
-euler7 n = primes !! n
+euler7 = (primes !!)
 
 main = run $ euler7 10001

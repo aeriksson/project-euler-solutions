@@ -14,7 +14,7 @@ import Data.Char
 
 nthPermutation xs 1 = xs
 nthPermutation xs i = x : nthPermutation (delete x xs) (rem i n)
-      where n = factorial $ length xs - 1
+      where n = factorial (length xs - 1)
             x = xs !! quot i n
 
 euler24 :: [Int] -> Int -> Int

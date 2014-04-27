@@ -5,6 +5,6 @@
 
 import Util
 
-euler1 n = sum [i | i <- [1..n], (mod i 3 == 0) || (mod i 5 == 0)]
+euler1 n = sum [i | i <- [1 .. pred n], divides 3 i || divides 5 i]
 
 main = run $ euler1 1000

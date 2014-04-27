@@ -17,17 +17,18 @@
 -- of two abundant numbers.
 
 import Util
+import Data.List (findIndices)
 import Data.Set (fromList, member)
 import Data.Vector (fromList, (!))
 
 isAbundant n = n < properDivisorSum n
 
-euler23 n = sum $ filter (\x -> not $ member x sums) candidates
+euler23 n = sum $ filter (\x -> not . member x $ sums) candidates
   where candidates  = [1..(n - 1)]
         isAbundants = map isAbundant candidates
+        abundants   = map succ . findIndices id $ isAbundants
         abv         = Data.Vector.fromList isAbundants
-        abundants   = map fst $ filter snd $ zip [1..] isAbundants
-        sums        = Data.Set.fromList [i | i <- [1..n],
+        sums        = Data.Set.fromList [i | i <- candidates,
                                              any (\x -> abv ! (i - x - 1)) $
                                                  takeWhile (< i) abundants]
 

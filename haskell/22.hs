@@ -15,9 +15,9 @@ import Data.List
 import Data.Char
 
 euler22 path = do contents <- readFile path
-                  let names = sort $ read $ "[" ++ contents ++ "]"
-                  return $ sum . zipWith (*) [1..] $ map score names
+                  let names = sort . read $ "[" ++ contents ++ "]"
+                  return . sum . zipWith (*) [1..] . map score $ names
   where index c = ord c - ord 'A' + 1
-        score w = sum $ map index w
+        score   = sum . map index
 
 main = euler22 "../data/names.txt" >>= run

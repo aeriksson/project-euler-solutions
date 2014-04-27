@@ -6,7 +6,7 @@
 
 import Util
 
-euler13 n_digits numbers = take n_digits $ show $ sum numbers
+euler13 n = fromDigits . take n . toDigits . sum
 
 main = run $ euler13 10 numbers
   where numbers = [37107287533902102798797998220837590246510135740250,

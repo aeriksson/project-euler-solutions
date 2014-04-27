@@ -7,6 +7,6 @@
 
 import Util
 
-euler20 n = sum $ toDigits $ product [1..n]
+euler20 n = sum . toDigits . product $ [1..n]
 
 main = run $ euler20 100

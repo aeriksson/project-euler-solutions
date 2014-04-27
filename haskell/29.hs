@@ -15,6 +15,6 @@
 import Util
 import Data.List
 
-euler29 xs = length $ nub $ [i^j | i <- xs, j <- xs]
+euler29 xs = length . nub $ [i^j | i <- xs, j <- xs]
 
 main = run $ euler29 [2..100]

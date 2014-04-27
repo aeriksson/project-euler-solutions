@@ -5,11 +5,11 @@
 
 import Util
 
-is_palindrome n = n == reverse n
+isPalindrome n = n == reverse n
 
-euler4 n = maximum $ filter (is_palindrome . show) multiples
-  where lb = 10^(n - 1)
-        ub = 10^n
-        multiples = [i * j | i <- [lb..ub], j <- [i..ub]]
+euler4 n = maximum $ filter (isPalindrome . show) multiples
+  where upper = 10^n
+        lower = 10^(n - 1)
+        multiples = [i * j | i <- [lower..upper], j <- [i..upper]]
 
 main = run $ euler4 3
