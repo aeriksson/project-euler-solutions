@@ -39,6 +39,9 @@ isPrime n
   | otherwise = all (\x -> not $ divides x n) $ takeWhile (<= rt) primes
     where rt = floor $ sqrt $ fromIntegral n
 
+isInt :: RealFrac a => a -> Bool
+isInt x = x == fromInteger (round x)
+
 properDivisorSum :: Int -> Int
 properDivisorSum n
   | n < 2     = 0
