@@ -13,8 +13,8 @@ distinct = toList . fromList
 none :: (a -> Bool) -> [a] -> Bool
 none f = not . any f
 
-partition :: Int -> [a] -> [[a]]
-partition n l = map (take n) . filter ((>= n) . length) . tails $ l
+sublistsOfLength :: Int -> [a] -> [[a]]
+sublistsOfLength n l = map (take n) . filter ((>= n) . length) . tails $ l
 
 primes :: [Int]
 primes = 2 : 3 : 5 : 7 : sieve 9 (tail primes) empty

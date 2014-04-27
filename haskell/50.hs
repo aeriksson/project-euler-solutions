@@ -13,7 +13,7 @@
 import Util
 
 euler50 n = head [d | i <- [0..nSums],
-                      d <- map diff . partition (nSums - i) $ sums,
+                      d <- map diff . sublistsOfLength (nSums - i) $ sums,
                       isPrime d]
   where sums  = takeWhile (< n) . scanl1 (+) $ primes
         nSums = length sums
