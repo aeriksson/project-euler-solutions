@@ -59,10 +59,13 @@
     (lazy-cat [2 3 5 7]
       (sieve 9 (transient {}) 3 (drop 2 primes)))))
 
+(defn divides? [n m]
+  (= 0 (mod m n)))
+
 (defn prime? [n]
   (if (< n 2)
     false
-    (not-any? #(zero? (rem n %)) (take-while #(<= % (Math/sqrt n)) primes))))
+    (not-any? #(divides? % n) (take-while #(<= % (Math/sqrt n)) primes))))
 
 (defn prime-factors [n]
   (letfn [(factor [n primes]
@@ -73,9 +76,6 @@
                   (recur n (rest primes)))
                 (list n))))]
     (factor n primes)))
-
-(defn divides? [n m]
-  (= 0 (mod m n)))
 
 (defn proper-divisors [n]
   (filter #(= 0 (mod n %)) (range 1 n)))
