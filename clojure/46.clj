@@ -25,4 +25,4 @@
         counterexamples (filter counterexample? odd-composites)]
     (nth counterexamples (dec n))))
 
-(run (euler-46 3))
+(run (euler-46 1))
