@@ -5,6 +5,6 @@
 (load "util")
 
 (defn euler-16 [n m]
-  (reduce + (digits-of (exp n m))))
+  (sum (digits-of (exp n m))))
 
 (run (euler-16 2 1000))

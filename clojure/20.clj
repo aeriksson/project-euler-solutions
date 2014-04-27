@@ -8,6 +8,6 @@
 (load "util")
 
 (defn euler-20 [n]
-  (apply + (digits-of (factorial n))))
+  (sum (digits-of (factorial n))))
 
 (run (euler-20 100))

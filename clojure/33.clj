@@ -16,10 +16,10 @@
   (= (/ x z) (/ (+ (* 10 x) y) (+ (* 10 y) z))))
 
 (defn euler-33 []
-  (denominator (reduce * (for [x (range 1 10)
-                               y (range 1 10)
-                               z (remove #(= x %) (range 1 10))
-                               :when (curious? x y z)]
-                           (/ x z)))))
+  (denominator (product (for [x (range 1 10)
+                              y (range 1 10)
+                              z (remove #(= x %) (range 1 10))
+                              :when (curious? x y z)]
+                          (/ x z)))))
 
 (run (euler-33))

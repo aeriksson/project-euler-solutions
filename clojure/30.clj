@@ -14,7 +14,7 @@
 (defn euler-30 [n]
   (let [upper-bound (* (exp 9 n) (inc n))
         powers (vec (map #(exp % n) (range 10)))
-        power-sum (fn [x] (apply + (map #(nth powers %) (digits-of x))))]
-    (reduce + (filter #(= % (power-sum %)) (range 2 upper-bound)))))
+        power-sum (fn [x] (sum (map #(nth powers %) (digits-of x))))]
+    (sum (filter #(= % (power-sum %)) (range 2 upper-bound)))))
 
 (run (euler-30 5))

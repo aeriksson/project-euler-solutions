@@ -13,10 +13,10 @@
 (load "util")
 
 (defn sum-of-squares [numbers]
-  (reduce + (map #(* % %) numbers)))
+  (sum (map #(* % %) numbers)))
 
 (defn square-of-sum [numbers]
-  (#(* % %) (reduce + numbers)))
+  (#(* % %) (sum numbers)))
 
 (defn euler-6 [numbers]
   (- (square-of-sum numbers) (sum-of-squares numbers)))

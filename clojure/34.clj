@@ -8,11 +8,11 @@
 (load "util")
 
 (defn euler-34 []
-  (reduce +
-          (let [facs (vec (map factorial (range 10)))
-                upper-bound (* 7 (factorial 9))]
-            (for [i (range 2 upper-bound)
-                  :when (= i (apply + (map #(nth facs %) (digits-of i))))]
-              i))))
+  (sum
+    (let [facs (vec (map factorial (range 10)))
+          upper-bound (* 7 (factorial 9))]
+      (for [i (range 2 upper-bound)
+            :when (= i (sum (map #(nth facs %) (digits-of i))))]
+        i))))
 
 (run (euler-34))

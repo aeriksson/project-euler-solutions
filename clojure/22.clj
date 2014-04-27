@@ -15,7 +15,7 @@
 (defn euler-22 [path]
   (let [words (sort (re-seq #"\w+" (slurp path)))
         index #(- (int %) 64)
-        score #(reduce + (map index %))]
-    (reduce + (map * (iterate inc 1) (map score words)))))
+        score #(sum (map index %))]
+    (sum (map * (iterate inc 1) (map score words)))))
 
 (run (euler-22 "../data/names.txt"))

@@ -13,7 +13,7 @@
 (defn euler-37 []
   (loop [ps [3 5 7], acc [], d 10]
     (if (== 11 (count acc))
-      (reduce + acc)
+      (sum acc)
       (let [new-ps (filter prime? (for [p ps, i (range 1 10)] (+ p (* d i))))
             new-acc (filter (fn [n]
                               (every? prime?

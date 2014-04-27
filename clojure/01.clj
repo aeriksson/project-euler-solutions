@@ -6,6 +6,6 @@
 (load "util")
 
 (defn euler-1 [n]
-  (reduce + (filter #(or (= 0 (mod % 3)) (= 0 (mod % 5))) (range n))))
+  (sum (filter #(or (= 0 (mod % 3)) (= 0 (mod % 5))) (range n))))
 
 (run (euler-1 1000))

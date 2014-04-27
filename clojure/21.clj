@@ -17,6 +17,6 @@
          (not= n candidate))))
 
 (defn euler-21 [n]
-  (reduce + (filter amicable? (range 1 n))))
+  (sum (filter amicable? (range 1 n))))
 
 (run (euler-21 10000))

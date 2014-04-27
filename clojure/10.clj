@@ -5,6 +5,6 @@
 (load "util")
 
 (defn euler-10 [n]
-  (reduce + (take-while (partial > n) primes)))
+  (sum (take-while (partial > n) primes)))
 
 (run (euler-10 2e6))

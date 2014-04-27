@@ -1,12 +1,18 @@
+(defn sum [n]
+  (reduce +' n))
+
+(defn product [n]
+  (reduce *' n))
+
 (defn exp [x n]
-  (reduce *' (repeat n x)))
+  (product (repeat n x)))
 
 (defn factorial [n]
-  (reduce *' (range 2 (inc n))))
+  (product (range 2 (inc n))))
 
 (defn choose [n k]
-  (reduce * (for [i (range 1 (inc k))]
-              (/(- (inc n) i) i))))
+  (product (for [i (range 1 (inc k))]
+             (/(- (inc n) i) i))))
 
 (defn greatest-common-divisor [a b]
   (if (zero? b) a (recur b (mod a b))))
@@ -87,7 +93,7 @@
   (first (apply max-key second (map-indexed vector s))))
 
 (defn n-divisors [n]
-  (reduce * (map #(inc (count %)) (partition-by identity (prime-factors n)))))
+  (product (map #(inc (count %)) (partition-by identity (prime-factors n)))))
 
 (defn proper-divisor-sum [n]
   (let [f (fn [primes acc]
@@ -97,7 +103,7 @@
                     n (count p)
                     x (first p)
                     powers-of-x (iterate (partial * x) x)
-                    multiplier (inc (reduce + (take n powers-of-x))) ]
+                    multiplier (inc (sum (take n powers-of-x))) ]
                 (recur (rest primes) (* acc multiplier)))))
         primes (prime-factors n)
         partitioned-primes (partition-by identity primes)]

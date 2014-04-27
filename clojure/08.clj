@@ -28,6 +28,6 @@
             "71636269561882670428252483600823257530420752963450")))
 
 (defn euler-8 [n]
-  (apply max (map (partial reduce *) (partition 5 1 number))))
+  (apply max (map product (partition 5 1 number))))
 
 (run (euler-8 number))

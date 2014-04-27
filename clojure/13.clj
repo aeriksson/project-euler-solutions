@@ -108,6 +108,6 @@
               53503534226472524250874054075591789781264330331690])
 
 (defn euler-13 [n-digits numbers]
-  (apply str (take n-digits (str (apply + numbers)))))
+  (apply str (take n-digits (str (sum numbers)))))
 
 (run (euler-13 10 numbers))

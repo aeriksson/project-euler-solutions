@@ -20,7 +20,7 @@
 (defn euler-42 [path]
   (let [words (sort (re-seq #"\w+" (slurp path)))
         index #(- (int %) 64)
-        score #(reduce + (map index %))]
+        score #(sum (map index %))]
     (count (filter triangle-number? (map score words)))))
 
 (run (euler-42 "../data/words.txt"))

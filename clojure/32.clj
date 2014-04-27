@@ -30,13 +30,13 @@
                  4  [[(range 1 10) #(range (quot 10 %) 10)]]
                  3  [[(range 1 10) #(range 10 (quot 10 %))]]
                  :else [])]
-    (reduce +
-            (distinct
-              (for [[as bs] bounds
-                    a as
-                    b (bs a)
-                    :let [p (* a b)]
-                    :when (is-permutation? (str a b p) digits)]
-                p)))))
+    (sum
+      (distinct
+        (for [[as bs] bounds
+              a as
+              b (bs a)
+              :let [p (* a b)]
+              :when (is-permutation? (str a b p) digits)]
+          p)))))
 
 (run (euler-32 "123456789"))

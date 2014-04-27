@@ -9,7 +9,7 @@
 (load "util")
 
 (defn euler-36 [n]
-  (reduce + (filter #(and (palindrome? (digits-of %))
-                          (palindrome? (digits-of % 2))) (range 1 n 2))))
+  (sum (filter #(and (palindrome? (digits-of %))
+                     (palindrome? (digits-of % 2))) (range 1 n 2))))
 
 (run (euler-36 1000000))

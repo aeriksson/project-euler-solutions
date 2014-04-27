@@ -9,6 +9,6 @@
 (load "util")
 
 (defn euler-2 [n]
-  (reduce + (filter even? (take-while #(< % n) fibonacci-numbers))))
+  (sum (filter even? (take-while #(< % n) fibonacci-numbers))))
 
 (run (euler-2 4000000))

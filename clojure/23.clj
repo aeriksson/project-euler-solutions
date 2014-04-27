@@ -29,6 +29,6 @@
                         (some #(nth is-abundant (- i %))
                               (take-while #(< % (dec i)) abundants)))
         sums        (set (filter abundant-sum? candidates))]
-    (reduce + (filter #(not (contains? sums (dec %))) candidates))))
+    (sum (filter #(not (contains? sums (dec %))) candidates))))
 
 (run (euler-23 28123))

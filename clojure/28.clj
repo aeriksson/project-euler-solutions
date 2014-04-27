@@ -16,10 +16,10 @@
 
 (defn euler-28 [r]
   (inc
-    (reduce +
-            (for [x (range 1 (inc (quot (dec r) 2)))
-                  :let [step (* 2 x)
-                        start (#(* % %) (dec (* 2 x)))]]
-              (apply + (map #(+ start (* step %)) (range 1 5)))))))
+    (sum
+      (for [x (range 1 (inc (quot (dec r) 2)))
+            :let [step (* 2 x)
+                  start (#(* % %) (dec (* 2 x)))]]
+        (sum (map #(+ start (* step %)) (range 1 5)))))))
 
 (run (euler-28 1001))

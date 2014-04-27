@@ -23,6 +23,6 @@
                       target-dig-index (dec (rem dig-offset digs-per-num))
                       target-dig (nth (digits-of target-num) target-dig-index)]
                   target-dig))))]
-    (reduce * (map #(if (< % 10) % (f % 1)) ds))))
+    (product (map #(if (< % 10) % (f % 1)) ds))))
 
 (run (euler-40 [1 10 100 1000 10000 100000 1000000]))
