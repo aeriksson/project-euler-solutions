@@ -36,12 +36,14 @@ isPrime n
     where rt = floor $ sqrt $ fromIntegral n
 
 properDivisorSum :: Int -> Int
-properDivisorSum n = (f partitionedPrimes 1) - n
+properDivisorSum n
+  | n < 2     = 0
+  | otherwise = (f partitionedPrimes 1) - n
   where f []        s = s
         f ps@(p:pt) s = f pt (s * multiplier)
-          where pows       = iterate (* (head p)) (head p)
-                multiplier = 1 + (sum (take (length p) pows))
-        partitionedPrimes = (group . primeFactors) n
+          where pows       = iterate (* head p) (head p)
+                multiplier = succ . sum . take (length p) $ pows
+        partitionedPrimes = group . primeFactors $ n
 
 primeFactors :: Int -> [Int]
 primeFactors n = factors primes n
