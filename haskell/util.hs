@@ -33,7 +33,7 @@ primes = 2 : 3 : 5 : 7 : sieve 9 (tail primes) empty
         where c' = c + 2
 
 composites :: [Int]
-composites = concat $ map nsBetween $ zip primes (tail primes)
+composites = concatMap nsBetween $ zip primes (tail primes)
   where nsBetween (a, b) = [succ a .. pred b]
 
 coprime :: Integral a => a -> a -> Bool
@@ -57,7 +57,7 @@ properDivisors n = filter (`divides` n) [1..(pred n)]
 properDivisorSum :: Int -> Int
 properDivisorSum n
   | n < 2     = 0
-  | otherwise = (f partitionedPrimes 1) - n
+  | otherwise = f partitionedPrimes 1 - n
   where f []        s = s
         f ps@(p:pt) s = f pt (s * multiplier)
           where pows       = iterate (* head p) (head p)
@@ -65,7 +65,7 @@ properDivisorSum n
         partitionedPrimes = group . primeFactors $ n
 
 primeFactors :: Int -> [Int]
-primeFactors n = factors primes n
+primeFactors = factors primes
   where
     factors :: [Int] -> Int -> [Int]
     factors ps@(p:pt) n
@@ -106,9 +106,9 @@ maxIndex l = snd $ maximum $ zip l [0..]
 
 run :: Show a => a -> IO ()
 run f = do
-    start <- getCPUTime :: IO Integer
+    start <- getCPUTime
     return $! f
-    end <- getCPUTime   :: IO Integer
-    let diff = (fromIntegral (end - start)) / (10^9) :: Double
+    end   <- getCPUTime
+    let diff = fromIntegral (end - start) / (10^9)
     printf "Elapsed time: %0.3f msecs\n" (diff :: Double)
     print f

@@ -18,4 +18,4 @@ euler37 = f [3, 5, 7] [] 10
                   acc' = filter t ps'
                   t    = all isPrime . takeWhile (> 0) . iterate (`quot` 10)
 
-main = run $ euler37
+main = run euler37

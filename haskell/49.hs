@@ -16,7 +16,7 @@ triples n = [(a, b, c) | b <- ps,
                          isPermutation (show a) (show b),
                          isPermutation (show a) (show c),
                          isPrime c]
-  where ps = takeWhile (< 10^n) . dropWhile (< 10^(pred n)) $ primes
+  where ps = takeWhile (< 10 ^ n) . dropWhile (< 10 ^ pred n) $ primes
 
 euler49 = toRes . head . filter (/= (1487, 4817, 8147)) . triples
   where toRes (a, b, c) = fromDigits $ toDigits a ++ toDigits b ++ toDigits c

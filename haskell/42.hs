@@ -16,8 +16,6 @@ import Util
 import Data.Char
 import Data.List
 
-import Util
-
 isTriangular = isInt . sqrt . fromIntegral . succ . (* 8)
 
 euler42 path = do contents <- readFile path

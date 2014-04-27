@@ -14,8 +14,8 @@ triplesWithPerimiter p = distinct $ newTriples ++ oldTriples
     upper      = pred . ceiling . sqrt . (/ 2) . fromIntegral
     candidates = filter ((`divides` p) . (2 *)) [lower p .. upper p]
     newTriples = map (sort . euclidTr) candidates
-    oldTriples = [map (* (quot p d)) ts | d <- properDivisors p,
-                                          ts <- triplesWithPerimiter d]
+    oldTriples = [map (* quot p d) ts | d <- properDivisors p,
+                                        ts <- triplesWithPerimiter d]
     euclidTr m = let n = quot p (2 * m) - m in [m^2 - n^2, 2 * m * n, m^2 + n^2]
 
 euler39 n = maxIndex $ map (length . triplesWithPerimiter) [0 .. pred n]

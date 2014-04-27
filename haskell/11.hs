@@ -30,10 +30,10 @@ import Util
 
 euler17 numbers = maximum [product (map f [1..4]) | x <- [0..19],
                                                     y <- [0..19],
-                                                    f <- [(\i -> at (x + i) y),
-                                                          (\i -> at x (y + i)),
-                                                          (\i -> at (x + i) (y + i)),
-                                                          (\i -> at (x + i) (y - i))]]
+                                                    f <- [\i -> at (x + i) y,
+                                                          \i -> at x (y + i),
+                                                          \i -> at (x + i) (y + i),
+                                                          \i -> at (x + i) (y - i)]]
  where at r c = if 0 <= r && 0 <= c && r < 20 && c < 20 then numbers !! r !! c else 0
 
 main = run $ euler17 numbers

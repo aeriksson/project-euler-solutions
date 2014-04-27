@@ -12,6 +12,6 @@
 
 import Util
 
-euler6 xs = (sum xs)^2 - sum (map (^2) xs)
+euler6 xs = sum xs ^ 2 - sum (map (^2) xs)
 
 main = run $ euler6 [1..100]

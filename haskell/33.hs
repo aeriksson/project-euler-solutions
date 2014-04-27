@@ -19,4 +19,4 @@ euler33 = denominator $ product [x % z | x <- [1..9],
                                          isCurious x y z]
   where isCurious x y z = x % z == (10 * x + y) % (10 * y + z)
 
-main = run $ euler33
+main = run euler33

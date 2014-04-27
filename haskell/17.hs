@@ -12,18 +12,18 @@
 
 import Util
 
-spell_out n
+spellOut n
   | n == 0    = ""
   | n < 20    = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
                  "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
                  "seventeen", "eighteen", "nineteen"] !! (n - 1)
   | n < 100   = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty",
-                 "ninety"] !! (div n 10 - 2) ++ spell_out (mod n 10)
-  | n < 1000  = spell_out (div n 100) ++ "hundred" ++ spell_out (mod n 100)
-  | n < 10000 = spell_out (div n 1000) ++ "thousand" ++ spell_out (mod n 1000)
+                 "ninety"] !! (div n 10 - 2) ++ spellOut (mod n 10)
+  | n < 1000  = spellOut (div n 100)  ++ "hundred"  ++ spellOut (mod n 100)
+  | n < 10000 = spellOut (div n 1000) ++ "thousand" ++ spellOut (mod n 1000)
   | otherwise = ""
 
-euler17 l = (+ 3 * nAnds l) . sum . map (length . spell_out) $ l
+euler17 l = (+ 3 * nAnds l) . sum . map (length . spellOut) $ l
   where nAnds = length . filter (\n -> n > 100 && not (divides 100 n))
 
 main = run $ euler17 [1..1000]

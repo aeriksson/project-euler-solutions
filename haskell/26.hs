@@ -22,10 +22,9 @@ mulOrder x n = head [if j == 1 then i else 0 | (i, j) <- pows x n, j < 2]
   where pows x n = zip [1..] (iterate (\y -> mod (x * y) n) x)
 
 decimalCycleLength denom = mulOrder 10 coprimeToTen
-  where coprimeToTen = rmMults 5 $ rmMults 2 $ denom
-        rmMults n p
-          | (mod p n == 0) = rmMults (quot p n) n
-          | otherwise      = p
+  where coprimeToTen = rmMults 5 . rmMults 2 $ denom
+        rmMults n p | mod p n == 0 = rmMults (quot p n) n
+                    | otherwise    = p
 
 euler26 n = snd . maximum $ zip (map decimalCycleLength [2..999]) [2..]
 

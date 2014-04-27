@@ -17,8 +17,8 @@ import Util
 
 euler38 digits = maximum $ 0 : answers
   where l = length digits
-        bound = 10^(quot l 2)
-        multiples n = map toDigits $ [n, 2 * n ..]
+        bound = 10 ^ quot l 2
+        multiples n = map toDigits [n, 2 * n ..]
         candidates  = takeWhile ((<= l) . length) . scanl1 (++) . multiples
         answers     = [fromDigits j | i <- [1..bound],
                                       j <- candidates i,
