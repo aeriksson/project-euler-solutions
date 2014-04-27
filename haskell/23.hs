@@ -24,7 +24,7 @@ import Data.Vector (fromList, (!))
 isAbundant n = n < properDivisorSum n
 
 euler23 n = sum $ filter (\x -> not . member x $ sums) candidates
-  where candidates  = [1..(n - 1)]
+  where candidates  = [1 .. n - 1]
         isAbundants = map isAbundant candidates
         abundants   = map succ . findIndices id $ isAbundants
         abv         = Data.Vector.fromList isAbundants

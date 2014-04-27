@@ -16,12 +16,12 @@
 import Util
 
 euler38 digits = maximum $ 0 : answers
-  where dl = length digits
-        bound = 10^(quot dl 2)
+  where l = length digits
+        bound = 10^(quot l 2)
         multiples n = map toDigits $ [n, 2 * n ..]
-        candidates  = takeWhile ((<= dl) . length) . scanl1 (++) . multiples
+        candidates  = takeWhile ((<= l) . length) . scanl1 (++) . multiples
         answers     = [fromDigits j | i <- [1..bound],
-                                       j <- candidates i,
-                                       isPermutation j digits]
+                                      j <- candidates i,
+                                      isPermutation j digits]
 
 main = run $ euler38 [1, 2, 3, 4, 5, 6, 7, 8, 9]

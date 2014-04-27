@@ -15,8 +15,8 @@
 import Util
 
 euler28 r = 1 + sum [spiralSum start step | x <- [1..(quot (r - 1) 2)],
-                                            let step = 2 * x,
-                                            let start = (2 * x - 1)^2]
+                                            let step = 2 * x
+                                                start = (2 * x - 1)^2]
   where spiralSum start step = sum $ map (\x -> start + (step * x)) [1..4]
 
 main = run $ euler28 1001

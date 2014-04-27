@@ -10,6 +10,6 @@ isPalindrome n = n == reverse n
 euler4 n = maximum $ filter (isPalindrome . show) multiples
   where upper = 10^n
         lower = 10^(n - 1)
-        multiples = [i * j | i <- [lower..upper], j <- [i..upper]]
+        multiples = [i * j | i <- [lower .. upper], j <- [i .. upper]]
 
 main = run $ euler4 3

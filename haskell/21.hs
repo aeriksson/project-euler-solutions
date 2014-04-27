@@ -11,7 +11,7 @@
 
 import Util
 
-amicable n = (n == properDivisorSum c) && (n /= c)
+amicable n = n == properDivisorSum c && n /= c
   where c = properDivisorSum n
 
 euler21 n = sum . filter amicable $ [1..n]

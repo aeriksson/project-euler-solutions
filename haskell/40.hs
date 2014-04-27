@@ -16,7 +16,7 @@ euler40 ds = product $ map (\x -> if x < 10 then x else f x 1) ds
   where f dOffs dsPerN
           | split < dOffs = f (dOffs - split) (succ dsPerN)
           | otherwise     = toDigits targetN !! targetI
-            where split   = 9 * 10^(dsPerN - 1) * dsPerN
+            where split   = 10^(dsPerN - 1) * 9 * dsPerN
                   targetN = 10^(dsPerN - 1) + quot dOffs dsPerN
                   targetI = pred . rem dOffs $ dsPerN
 

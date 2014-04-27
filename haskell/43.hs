@@ -21,22 +21,23 @@ import Data.List
 subsets []  = [[]]
 subsets (x:xs) = subsets xs ++ map (x:) (subsets xs)
 
-validPrefixes divisor suffix digits = nub . filter validPre $ digits \\ suffix
+validPrefixes divisor suffix = nub . filter isValid . (\\ suffix)
   where
-    validPre = divides divisor . fromInteger . fromDigits . take 3 . (: suffix)
+    isValid = divides divisor . fromDigits . take 3 . (: suffix)
 
 numsWithProperty digits suffix [] =
   nub . map (fromDigits . (++ suffix)) $ permutations digits
-numsWithProperty digits [] (divisor : divisors) =
-  concat [numsWithProperty digits' p divisors | digs <- filter ((== 3) . length) . subsets $ digits,
-                                 p <- permutations digs,
-                                 divides divisor . fromDigits $ p,
-                                 let digits' = digits \\ p]
-numsWithProperty digits suffix (divisor : divisors) =
-  concat [numsWithProperty digits' suffix' divisors | d <- validPrefixes divisor suffix digits,
-                                       let digits' = delete d digits,
-                                       let suffix' = d : suffix]
 
-euler43 digits divisors = sum $ numsWithProperty digits [] (reverse divisors)
+numsWithProperty digits [] (divisor : divisors) =
+  concat [r | digs <- filter ((== 3) . length) . subsets $ digits,
+              p    <- permutations digs,
+              divides divisor . fromDigits $ p,
+              let r = numsWithProperty (digits \\ p) p divisors]
+
+numsWithProperty digits suffix (divisor : divisors) =
+  concat [r | d <- validPrefixes divisor suffix digits,
+              let r = numsWithProperty (delete d digits) (d : suffix) divisors]
+
+euler43 digits = sum . numsWithProperty digits [] . reverse
 
 main = run $ euler43 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] [2, 3, 5, 7, 11, 13, 17]

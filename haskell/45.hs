@@ -14,6 +14,6 @@ isPentagonal = isInt . (/ 6) . succ . sqrt . succ . (* 24) . fromInteger
 
 hexagonalNumbers = map (\i -> (i * (i * 2 - 1))) [0..]
 
-euler45 n = filter isPentagonal hexagonalNumbers !! (pred n)
+euler45 n = filter isPentagonal hexagonalNumbers !! pred n
 
 main = run $ euler45 3
