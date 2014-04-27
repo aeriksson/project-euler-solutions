@@ -6,16 +6,20 @@
 
 (load "util")
 
+(defn n-digit-primes [n]
+  (take-while #(< % (exp 10 n))
+              (drop-while #(< % (exp 10 (dec n))) primes)))
+
+(defn primes-with-digits [digits]
+  (let [primes (reverse (n-digit-primes (count digits)))]
+    (first (filter #(is-permutation? digits (str %)) primes))))
+
 (defn euler-41 [digits]
   (first
     (for [ds (reverse (reductions str digits))
           :let [digit-sum (reduce #(+ %1 (Integer. (str %2))) 0 ds)]
-          :when (not (divides? 3 digit-sum))]
-      (let [lower-bound (exp 10 (dec (count ds)))
-            upper-bound (* 10 lower-bound)
-            ps (reverse (take-while (partial > upper-bound)
-                                    (drop-while (partial > lower-bound)
-                                                primes)))]
-        (first (filter #(is-permutation? ds (str %)) ps))))))
+          :when (and (not (divides? 3 digit-sum))
+                     (not (divides? 9 digit-sum)))]
+      (primes-with-digits ds))))
 
 (run (euler-41 "123456789"))
