@@ -91,8 +91,9 @@ nDivisors :: Int -> Int
 nDivisors n = product $ map (\x -> 1 + length x) $ (group . primeFactors) n
 
 toDigitsInBase :: Integral a => a -> a -> [Int]
-toDigitsInBase b 0 = []
-toDigitsInBase b n = toDigitsInBase b (quot n b) ++ [fromIntegral $ rem n b]
+toDigitsInBase b n = f n []
+  where f 0 acc = acc
+        f n acc = f (quot n b) (fromIntegral (rem n b) : acc)
 
 toDigits :: Integral a => a -> [Int]
 toDigits = toDigitsInBase 10
