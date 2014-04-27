@@ -7,6 +7,15 @@ import Data.IntMap (IntMap, empty, insert, delete, member, (!))
 import Data.List (group, sort, tails)
 import Data.Set (fromList, toList)
 
+distinct :: Ord a => [a] -> [a]
+distinct = toList . fromList
+
+none :: (a -> Bool) -> [a] -> Bool
+none f = not . any f
+
+partition :: Int -> [a] -> [[a]]
+partition n l = map (take n) . filter ((>= n) . length) . tails $ l
+
 primes :: [Int]
 primes = 2 : 3 : 5 : 7 : sieve 9 (tail primes) empty
   where
@@ -42,6 +51,9 @@ isPrime n
 isInt :: RealFrac a => a -> Bool
 isInt x = x == fromInteger (round x)
 
+properDivisors :: Int -> [Int]
+properDivisors n = filter (`divides` n) [1..(pred n)]
+
 properDivisorSum :: Int -> Int
 properDivisorSum n
   | n < 2     = 0
@@ -66,6 +78,9 @@ fibonacciNumbers :: [Integer]
 fibonacciNumbers = 0 : 1 : zipWith (+) fibonacciNumbers
                                         (tail fibonacciNumbers)
 
+isPermutation :: Ord a => [a] -> [a] -> Bool
+isPermutation a b = sort a == sort b
+
 factorial :: Integral a => a -> a
 factorial n = product [1..n]
 
@@ -84,6 +99,9 @@ toDigits = toDigitsInBase 10
 
 fromDigits :: (Integral a, Show a, Integral b, Read b) => [a] -> b
 fromDigits = read . concatMap show
+
+maxIndex :: Ord a => [a] -> Int
+maxIndex l = snd $ maximum $ zip l [0..]
 
 run :: Show a => a -> IO ()
 run f = do
