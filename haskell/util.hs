@@ -82,6 +82,9 @@ toDigitsInBase b n = toDigitsInBase b (quot n b) ++ [fromIntegral $ rem n b]
 toDigits :: Integral a => a -> [Int]
 toDigits = toDigitsInBase 10
 
+fromDigits :: (Integral a, Show a, Integral b, Read b) => [a] -> b
+fromDigits = read . concatMap show
+
 run :: Show a => a -> IO ()
 run f = do
     start <- getCPUTime :: IO Integer
