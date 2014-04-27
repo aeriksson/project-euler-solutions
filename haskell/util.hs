@@ -23,6 +23,10 @@ primes = 2 : 3 : 5 : 7 : sieve 9 (tail primes) empty
       | otherwise   = c : sieve c' ps sv
         where c' = c + 2
 
+composites :: [Int]
+composites = concat $ map nsBetween $ zip primes (tail primes)
+  where nsBetween (a, b) = [succ a .. pred b]
+
 coprime :: Integral a => a -> a -> Bool
 coprime a b = gcd a b == 1
 
