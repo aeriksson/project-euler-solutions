@@ -12,7 +12,7 @@
   (let [d ((comp dec count str) n)]
     (+ (quot n 10) (* (exp 10 d) (rem n 10)))))
 
-(defn derp [nums]
+(defn intersect-with-cycled [nums]
   (let [cycled (map cycle-int nums)
         filtered (set (filter (partial contains? nums) cycled))]
     filtered))
@@ -24,7 +24,7 @@
                                               (take-while (partial > n)
                                                           primes)))]
       (for [[d ps] (map-indexed vector primes-by-digits)
-            circulars (nth (iterate derp ps) d)]
+            circulars (nth (iterate intersect-with-cycled ps) d)]
         circulars))))
 
 (run (euler-35 1000000))

@@ -16,7 +16,7 @@
   (let [sums (take-while (partial > n) (reductions + primes))
         n-sums (count sums)]
     (first
-      (for [i (range 0 n-sums)
+      (for [i (range n-sums)
             parts (partition (- n-sums i) 1 sums)
             :let [d (- (last parts) (first parts))]
             :when (prime? d)]

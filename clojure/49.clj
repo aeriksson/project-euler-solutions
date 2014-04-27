@@ -12,17 +12,16 @@
 
 (defn euler-49 [n-digits]
   (let [lower-bound (exp 10 (dec n-digits))
-        upper-bound (* 10 lower-bound)
+        upper-bound (exp 10 n-digits)
         ps (take-while (partial > upper-bound)
                        (drop-while (partial > lower-bound) primes))]
-    (for [a ps
-          b (take-while (partial > a) ps)
-          :let [d (- a b)
-                c (+ a d)]
+    (for [b ps
+          a (take-while (partial > b) ps)
+          :let [c (+ b (- b a))]
           :when (and (> upper-bound c)
                      (is-permutation? (str a) (str b))
                      (is-permutation? (str a) (str c))
                      (prime? c))]
-      (str b a c))))
+      (str a b c))))
 
 (run (second (euler-49 4)))

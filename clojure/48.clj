@@ -6,7 +6,7 @@
 
 (defn euler-48 [n m]
   (let [xs (map #(exp % %) (range (inc n)))
-        sum (reduce + xs)]
+        sum (reduce +' xs)]
     (reduce str (take-last m (digits-of sum)))))
 
 (run (euler-48 1000 10))

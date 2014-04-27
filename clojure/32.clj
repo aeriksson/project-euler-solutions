@@ -29,10 +29,7 @@
                  5  [[(range 1 10) #(range 10 (quot 100 %))]]
                  4  [[(range 1 10) #(range (quot 10 %) 10)]]
                  3  [[(range 1 10) #(range 10 (quot 10 %))]]
-                 :else [])
-        pandigital? (fn [a b]
-                      (= (sort (str a b (* a b)))
-                         (sort digits)))]
+                 :else [])]
     (reduce +
             (distinct
               (for [[as bs] bounds

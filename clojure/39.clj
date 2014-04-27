@@ -15,9 +15,9 @@
                                      (range lower-bound upper-bound))
                   new-triples (for [m candidates
                                     :let [n (- (/ p (* 2 m)) m)
-                                          a (* (- (* m m) (* n n)))
+                                          a (- (* m m) (* n n))
                                           b (* 2 m n)
-                                          c (* (+ (* m m) (* n n)))]]
+                                          c (+ (* m m) (* n n))]]
                                 [(min a b) (max a b) c])
                   old-triples (for [d (proper-divisors p)
                                     ts (nth acc d)]
