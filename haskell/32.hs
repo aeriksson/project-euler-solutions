@@ -13,12 +13,12 @@
 
 import Util
 
-euler32 ds = sum . distinct $ [a * b | (as, bs) <- bounds $ length ds,
-                                       a <- as,
-                                       b <- bs a,
-                                       let p  = a * b
-                                           d = concatMap show [a, b, p],
-                                       isPermutation ds d]
+euler32 digits = sum . distinct $ [a * b | (as, bs) <- bounds $ length digits,
+                                           a <- as,
+                                           b <- bs a,
+                                           let p  = a * b
+                                               d = concatMap toDigits [a, b, p],
+                                           isPermutation digits d]
   where bounds n = case n of 10 -> [([10..99], (\x -> [quot 10000 x .. 1000])),
                                     ([1..9],   (\x -> [quot 10000 x .. 10000]))]
                              9  -> [([10..99], (\x -> [100  .. quot 10000 x])),
@@ -33,4 +33,4 @@ euler32 ds = sum . distinct $ [a * b | (as, bs) <- bounds $ length ds,
                              3  -> [([10..99], (\x -> [10  .. quot 1000 x]))]
                              otherwise -> []
 
-main = run $ euler32 "123456789"
+main = run $ euler32 [1, 2, 3, 4, 5, 6, 7, 8, 9]
