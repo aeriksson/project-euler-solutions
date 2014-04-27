@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -o errexit
+
+dir=$(mktemp -d -t 'ghc_build')
+
+filename="build_result"
+
+ghc -outputdir $dir -o "$dir/$filename" -O9 $@ >/dev/null
+
+$dir/$filename
+
+rm -rf $dir
