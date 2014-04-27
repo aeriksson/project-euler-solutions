@@ -23,6 +23,7 @@ spell_out n
   | n < 10000 = spell_out (div n 1000) ++ "thousand" ++ spell_out (mod n 1000)
   | otherwise = ""
 
-euler17 xs = sum $ map (length . spell_out) xs
+euler17 l = (+ 3 * nAnds l) . sum . map (length . spell_out) $ l
+  where nAnds = length . filter (\n -> n > 100 && not (divides 100 n))
 
 main = run $ euler17 [1..1000]

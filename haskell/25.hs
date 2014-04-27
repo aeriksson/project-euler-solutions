@@ -21,6 +21,7 @@
 
 import Util
 
-euler25 n = fst . head $ filter ((> 10^n) . snd) $ zip [1..] fibonacciNumbers
+euler25 n =
+  fst . head . filter ((>= 10^(n - 1)) . snd) $ zip [0..] fibonacciNumbers
 
 main = run $ euler25 1000

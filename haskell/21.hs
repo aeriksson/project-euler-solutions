@@ -11,8 +11,9 @@
 
 import Util
 
-is-amicable n = n == proper_divisor_sum candidate && n != candidate
+amicable n = (n == properDivisorSum c) && (n /= c)
+  where c = properDivisorSum n
 
-euler21 n = sum $ filter amicable [1..n]
+euler21 n = sum . filter amicable $ [1..n]
 
 main = run $ euler21 10000

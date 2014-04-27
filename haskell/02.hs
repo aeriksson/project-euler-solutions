@@ -8,6 +8,6 @@
 
 import Util
 
-euler2 n = sum $ takeWhile (< n) fibonacciNumbers
+euler2 n = sum . filter even . takeWhile (< n) $ fibonacciNumbers
 
 main = run $ euler2 4000000
