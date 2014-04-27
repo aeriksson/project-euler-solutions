@@ -15,9 +15,10 @@
 (use '[clojure.pprint :only (cl-format)])
 
 (defn euler-17 [numbers]
-  (count (filter #(Character/isLetter %)
-                 (reduce str
-                         (map (partial cl-format nil "~R")
-                              numbers)))))
+  (let [spelled-out (map (partial cl-format nil "~R") numbers)
+        n-ands      (count (filter #(and (> % 100)
+                                         (not (divides? 100 %))) numbers))]
+    (+ (* 3 n-ands)
+       (count (filter #(Character/isLetter %) (reduce str spelled-out))))))
 
 (run (euler-17 (range 1 1001)))

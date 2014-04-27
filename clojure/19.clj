@@ -24,4 +24,4 @@
               (.get (java.util.GregorianCalendar. year month 1)
                     java.util.Calendar/DAY_OF_WEEK)))))
 
-(run (euler-19 (range 1900 (inc 2000))))
+(run (euler-19 (range 1901 (inc 2000))))

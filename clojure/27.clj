@@ -28,7 +28,7 @@
     (apply max-key
            second
            (let [f (fn [a b] (map #(+ (* % %) (* a %) b) (range)))]
-             (for [b (take-while (partial > 1000) primes)
+             (for [b (take-while (partial > n) primes)
                    a (filter #(and (= (even? %) (even? b))
                                    (> b (- (+ (* 79 79) (* 79 %))))
                                    (coprime? % b))
