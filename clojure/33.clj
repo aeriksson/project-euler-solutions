@@ -12,21 +12,14 @@
 
 (load "util")
 
-(defn curious-fraction? [n d]
-  (let [n1 (quot n 10)
-        n2 (rem n 10)
-        d1 (quot d 10)
-        d2 (rem d 10)]
-    (and (not (zero? d2))
-         (= n2 d1)
-         (= (/ n1 d2) (/ n d)))))
+(defn curious? [x y z]
+  (= (/ x z) (/ (+ (* 10 x) y) (+ (* 10 y) z))))
 
 (defn euler-33 []
-  (denominator
-    (reduce *
-            (for [n (range 10 99)
-                  d (range (inc n) 100)
-                  :when (curious-fraction? n d)]
-              (/ n d)))))
+  (denominator (reduce * (for [x (range 1 10)
+                               y (range 1 10)
+                               z (remove #(= x %) (range 1 10))
+                               :when (curious? x y z)]
+                           (/ x z)))))
 
 (run (euler-33))
