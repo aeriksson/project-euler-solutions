@@ -16,6 +16,6 @@ import Util
 euler30 n = sum $ filter (\x -> x == powerSum x) [2..upperBound]
   where upperBound = 9^n * (n + 1)
         powers = [x^n | x <- [0..9]]
-        powerSum x = sum [powers !! i | i <- digitsOf x]
+        powerSum x = sum [powers !! i | i <- toDigits x]
 
 main = run $ euler30 5

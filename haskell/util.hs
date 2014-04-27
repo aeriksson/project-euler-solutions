@@ -72,8 +72,12 @@ choose n k = quot (product [n + 1 - i | i <- [1..k]]) (product [1..k])
 nDivisors :: Int -> Int
 nDivisors n = product $ map (\x -> 1 + length x) $ (group . primeFactors) n
 
-digitsOf :: Integer -> [Int]
-digitsOf = map digitToInt . show
+toDigitsInBase :: Integral a => a -> a -> [Int]
+toDigitsInBase b 0 = []
+toDigitsInBase b n = toDigitsInBase b (quot n b) ++ [fromIntegral $ rem n b]
+
+toDigits :: Integral a => a -> [Int]
+toDigits = toDigitsInBase 10
 
 run :: Show a => a -> IO ()
 run f = do

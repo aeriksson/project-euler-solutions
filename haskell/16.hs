@@ -4,6 +4,6 @@
 
 import Util
 
-euler16 = sum . digitsOf
+euler16 = sum . toDigits
 
 main = run $ euler16 (2^1000)
