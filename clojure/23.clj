@@ -22,26 +22,13 @@
   (< n (proper-divisor-sum n)))
 
 (defn euler-23 [n]
-  (let [candidates (range 1 n)
-        n-candidates (count candidates)
-        is-abundant (vec (map abundant? candidates))
-        abundants (vec (keep-indexed #(when %2 (inc %1)) is-abundant))
-        n-abundants (count abundants)
-        abundant-sums (loop [is-sum (transient (vec (repeat n-candidates true)))
-                             i 0
-                             j 0]
-                        (if (= i n-abundants)
-                          (persistent! is-sum)
-                          (let [sum (+ (nth abundants i) (nth abundants j))
-                                switch (or (= n-candidates j)
-                                           (>= sum n-candidates))
-                                new-i (if switch (inc i) i)
-                                new-j (if switch new-i (inc j))
-                                in-range (<= sum n-candidates)
-                                new-is-sum (if in-range
-                                             (assoc! is-sum (dec sum) false)
-                                             is-sum)]
-                            (recur new-is-sum new-i new-j))))]
-    (reduce + (filter #(nth abundant-sums (dec %)) candidates))))
+  (let [candidates    (range 1 n)
+        is-abundant   (vec (map abundant? candidates))
+        abundants     (vec (keep-indexed #(when %2 (inc %1)) is-abundant))
+        abundant-sum? (fn [i]
+                        (some #(nth is-abundant (- i %))
+                              (take-while #(< % (dec i)) abundants)))
+        sums        (set (filter abundant-sum? candidates))]
+    (reduce + (filter #(not (contains? sums (dec %))) candidates))))
 
 (run (euler-23 28123))
