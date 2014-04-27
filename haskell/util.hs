@@ -3,8 +3,9 @@ module Util where
 import System.CPUTime
 import Text.Printf
 import Data.Char (digitToInt)
-import Data.IntMap hiding (map)
-import Data.List (group)
+import Data.IntMap (IntMap, empty, insert, delete, member, (!))
+import Data.List (group, sort, tails)
+import Data.Set (fromList, toList)
 
 primes :: [Int]
 primes = 2 : 3 : 5 : 7 : sieve 9 (drop 1 primes) empty
