@@ -8,12 +8,12 @@ import Data.List (group, sort, tails)
 import Data.Set (fromList, toList)
 
 primes :: [Int]
-primes = 2 : 3 : 5 : 7 : sieve 9 (drop 1 primes) empty
+primes = 2 : 3 : 5 : 7 : sieve 9 (tail primes) empty
   where
     sieve_add :: IntMap Int -> Int -> Int -> IntMap Int
     sieve_add sv start step
-      | notMember next sv = insert next step sv
-      | otherwise         = sieve_add sv next step
+      | member next sv = sieve_add sv next step
+      | otherwise      = insert next step sv
         where next = start + step
 
     sieve :: Int -> [Int] -> IntMap Int -> [Int]
