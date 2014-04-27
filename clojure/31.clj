@@ -9,15 +9,14 @@
 
 (load "util")
 
-(defn euler-31 [n]
-  (let [coins [1, 2, 5, 10, 20, 50, 100, 200]]
-    (loop [v (transient (vec (repeat (inc n) 1)))
-           i 2
-           [c & cs :as coins] (drop 1 coins)]
-      (let [ways (+' (nth v i) (nth v (- i c)))
-            v' (assoc! v i ways)]
-        (cond (> n i)        (recur v' (inc i) coins)
-              (not-empty cs) (recur v' (first cs) cs)
-              :else          ways)))))
+(defn euler-31 [coins n]
+  (loop [v (vec (cons 1 (repeat n 0)))
+         i (first coins)
+         [c & cs :as coins] coins]
+    (let [ways (+' (nth v i) (nth v (- i c)))
+          v' (assoc v i ways)]
+      (cond (> n i)        (recur v' (inc i) coins)
+            (not-empty cs) (recur v' (first cs) cs)
+            :else          ways))))
 
-(run (euler-31 200))
+(run (euler-31 [1 2 5 10 20 50 100 200] 200))
