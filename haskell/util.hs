@@ -69,11 +69,11 @@ nDivisors n = product $ map (\x -> 1 + length x) $ (group . primeFactors) n
 digitsOf :: Integer -> [Int]
 digitsOf = map digitToInt . show
 
-run :: t -> IO t
-run a = do
-    start <- getCPUTime
-    v <- return $! a
-    end <- getCPUTime
-    let diff = (fromIntegral (end - start)) / (10^9)
+run :: Show a => a -> IO ()
+run f = do
+    start <- getCPUTime :: IO Integer
+    return $! f
+    end <- getCPUTime   :: IO Integer
+    let diff = (fromIntegral (end - start)) / (10^9) :: Double
     printf "Elapsed time: %0.3f msecs\n" (diff :: Double)
-    return v
+    print f
